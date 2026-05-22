@@ -30,12 +30,18 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-    - name: Executar o Pipeline do Robô
+   - name: Executar o Pipeline do Robô e Atualizar Histórico
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
         TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        GDRIVE_TOKEN_JSON: ${{ secrets.GDRIVE_TOKEN_JSON }}
       run: |
         python main.py
+        
+        # Lógica para salvar o arquivo de texto de volta no GitHub automaticamente
+        git config --global user.name "LegalTech Bot"
+        git config --global user.email "bot@legaltech.com"
+        git add historico_urls.txt
+        git commit -m "🤖 Auto: Atualizando histórico de URLs [skip ci]" || exit 0
+        git push
