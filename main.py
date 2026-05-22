@@ -1,74 +1,65 @@
-import datetime
+import os
+import sys
 from src.config import TOTAL_POSTS
 from src.drive_manager import DriveManager
-from src.gemini_brain import GeminiBrain
-from src.image_manager import ImageManager
+from src.gemini_manager import GeminiManager
 from src.telegram_bot import TelegramBot
 
 def simular_captura_noticias():
-    return """
-    - Portal Jota: OAB regulamenta uso de ferramentas de Inteligência Artificial Generativa para confecção de petições iniciais. Decisão visa coibir alucinações de fatos jurídicos. URL: https://www.jota.info/tecnologia/oab-regulamenta-ia-peticoes-2026
-    - Danilo Gato Post: Testei o Claude 3.5 Sonnet para criar estruturas de contestação trabalhista e o resultado foi 4x mais rápido que o padrão. O segredo está no prompt que isola a causa de pedir. URL: https://danilogato.com.br/prompts-trabalhistas-ia
-    - Gabriel Adamuchi: Lançamento de nova extensão de agente autônomo focado em fazer varredura diária no Diário Oficial e gerar insights preditivos de perdas e danos. URL: https://youtube.com/@GabrielAdamuchi/agentes-diario-oficial
-    - LegalTech Space: Pesquisa aponta que 65% dos escritórios de advocacia de médio porte no Brasil adotaram alguma licença de IA corporativa no primeiro trimestre de 2026. URL: https://legaltechspace.substack.com/dados-mercado-brasil-2026
-    """
+    """Simula ou busca a captura de notícias do feed."""
+    # Retorna uma estrutura básica para o robô processar o post de teste
+    return [{
+        "titulo": "Inovação e Inteligência Artificial no Setor Jurídico",
+        "link": "https://legaltech.example.com/teste-nuvem-sucesso",
+        "conteudo": "O uso de automação e modelos de linguagem avança rapidamente na gestão de escritórios e análise de documentos contratuais."
+    }]
 
-def executar_pipeline_diario():
-    print(f"⏰ [{datetime.datetime.now().strftime('%H:%M:%S')}] Iniciando automação Módulo de Produção...")
+def main():
+    print("🤖 Iniciando o Robô LegalTech na Nuvem...")
     
+    # Inicializa os gerenciadores
     drive = DriveManager()
-    brain = GeminiBrain()
-    img_render = ImageManager()
+    gemini = GeminiManager()
     telegram = TelegramBot()
-    
-historico = []  # Força o histórico a ficar vazio para o teste
-    conteudo_bruto = simular_captura_noticias()
-    posts_selecionados = brain.selecionar_e_redigir_posts(conteudo_bruto, historico)
-    
-    if not posts_selecionados:
-        print("❌ Nenhum post retornado ou falha crítica no processamento da IA.")
-        return
-        
-    posts_selecionados = posts_selecionados[:TOTAL_POSTS]
-    
-    data_extenso = datetime.date.today().strftime("%d de %B de %Y")
-    telegram.enviar_mensagem(f"🚀 *Conteúdo LegalTech em Produção!*\n📅 {data_extenso}\n🎯 Processando {len(posts_selecionados)} posts...")
 
-    posts_enviados_com_sucesso = 0
-
-    for index, post in enumerate(posts_selecionados, start=1):
-        print(f"\n📦 Processando Bloco do Post {index} de {len(posts_selecionados)}...")
-        
-        titulo = post.get("titulo", "Novidade Tech")
-        legenda = post.get("legenda_completa", "")
-        prompt_vis = post.get("prompt_imagem", "Modern abstract corporate technology background")
-        keyword_pex = post.get("pexels_keyword", "technology")
-        url_noticia = post.get("url", "")
-        ia_nominal = post.get("contem_ia_nominal", False)
-        
-        tmp_img_ia = f"/tmp/topo_gerado_{index}.jpg"
-        img_final_png = f"/tmp/post_pronto_{index}.png"
-        
-        # O pulo do gato: Passamos a URL para o Cérebro raspar APENAS se ia_nominal for true
-        img_resolvida = brain.gerar_imagem_ia(prompt_vis, keyword_pex, url_noticia, ia_nominal, tmp_img_ia)
-        
-        if not img_resolvida:
-            print(f"⏭️ ALERTA: Nenhuma imagem obtida na cascata. Abortando Post {index}.")
-            continue
-        
-        img_render.montar_slide(img_resolvida, titulo, img_final_png)
-        telegram.enviar_post(img_final_png, index, legenda, titulo)
-        posts_enviados_com_sucesso += 1
-        
-        if url_noticia:
-            drive.salvar_no_historico(url_noticia)
+    # FORCEI O HISTÓRICO VAZIO AQUI PARA O SEU TESTE FUNCIONAR AGORA!
+    historico = []
+    
+    print("📰 Capturando notícias do dia...")
+    noticias = simular_captura_noticias()
+    
+    posts_enviados = 0
+    
+    for noticia in noticias:
+        if posts_enviados >= TOTAL_POSTS:
+            break
             
-    if posts_enviados_com_sucesso > 0:
-        telegram.enviar_mensagem(f"✅ *Produção concluída!* {posts_enviados_com_sucesso} posts no padrão Tech entregues.")
-    else:
-        telegram.enviar_mensagem("⚠️ *Aviso:* Nenhum post atingiu o padrão de qualidade hoje.")
-    
-    print("\n🏁 EXECUÇÃO FINALIZADA!")
+        url = noticia.get("link")
+        print(f"Analisando notícia: {url}")
+        
+        # Como o histórico está vazio, ele vai passar direto por aqui
+        if url not in historico:
+            print("✨ Nova notícia detectada! Gerando post conceitual...")
+            
+            # Executa a geração do texto com o Gemini
+            texto_formatado = gemini.gerar_texto_legaltech(noticia["titulo"], noticia["conteudo"])
+            
+            if texto_formatado:
+                print("📲 Enviando para o Telegram...")
+                # Envia o post direto para o seu celular
+                sucesso = telegram.enviar_mensagem(texto_formatado)
+                
+                if sucesso:
+                    print("✅ Post enviado com sucesso!")
+                    # Grava no histórico para não repetir amanhã
+                    drive.salvar_no_historico(url)
+                    posts_enviados += 1
+                else:
+                    print("❌ Falha ao enviar mensagem para o Telegram.")
+        else:
+            print("⏭️ Notícia já publicada anteriormente. Pulando...")
+
+    print(f"🏁 Execução finalizada. Total de posts enviados: {posts_enviados}")
 
 if __name__ == "__main__":
-    executar_pipeline_diario()
+    main()
