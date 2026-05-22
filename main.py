@@ -21,7 +21,7 @@ def executar_pipeline_diario():
     img_render = ImageManager()
     telegram = TelegramBot()
     
-    historico = drive.ler_historico_urls()
+historico = []  # Força o histórico a ficar vazio para o teste
     conteudo_bruto = simular_captura_noticias()
     posts_selecionados = brain.selecionar_e_redigir_posts(conteudo_bruto, historico)
     
