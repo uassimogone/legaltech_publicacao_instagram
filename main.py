@@ -14,31 +14,27 @@ def simular_captura_noticias():
     """
 
 def executar_pipeline_diario():
-    print(f"⏰ [{datetime.datetime.now().strftime('%H:%M:%S')}] Iniciando automação Módulo de Produção...")
-
+    print(f"⏰ [{datetime.datetime.now().strftime('%H:%M:%S')}] Iniciando Pipeline...")
+    
     drive = DriveManager()
     brain = GeminiBrain()
     img_render = ImageManager()
     telegram = TelegramBot()
 
     historico = drive.ler_historico_urls()
-historico = []  # Força o histórico a ficar vazio para o teste
+    historico = []  # Força o histórico a ficar vazio para o teste
     conteudo_bruto = simular_captura_noticias()
+
+    print("🧠 Analisando notícias com Gemini...")
     posts_selecionados = brain.selecionar_e_redigir_posts(conteudo_bruto, historico)
 
     if not posts_selecionados:
-        print("❌ Nenhum post retornado ou falha crítica no processamento da IA.")
+        print("☕ Nenhuma novidade relevante para hoje. Encerrando.")
         return
 
-    posts_selecionados = posts_selecionados[:TOTAL_POSTS]
-
-    data_extenso = datetime.date.today().strftime("%d de %B de %Y")
-    telegram.enviar_mensagem(f"🚀 *Conteúdo LegalTech em Produção!*\n📅 {data_extenso}\n🎯 Processando {len(posts_selecionados)} posts...")
-
     posts_enviados_com_sucesso = 0
-
-    for index, post in enumerate(posts_selecionados, start=1):
-        print(f"\n📦 Processando Bloco do Post {index} de {len(posts_selecionados)}...")
+    for index, post in enumerate(posts_selecionados[:TOTAL_POSTS], start=1):
+        print(f"🎬 Processando Post {index}/{len(posts_selecionados)}...")
 
         titulo = post.get("titulo", "Novidade Tech")
         legenda = post.get("legenda_completa", "")
@@ -50,7 +46,6 @@ historico = []  # Força o histórico a ficar vazio para o teste
         tmp_img_ia = f"/tmp/topo_gerado_{index}.jpg"
         img_final_png = f"/tmp/post_pronto_{index}.png"
 
-        # O pulo do gato: Passamos a URL para o Cérebro raspar APENAS se ia_nominal for true
         img_resolvida = brain.gerar_imagem_ia(prompt_vis, keyword_pex, url_noticia, ia_nominal, tmp_img_ia)
 
         if not img_resolvida:
@@ -65,12 +60,7 @@ historico = []  # Força o histórico a ficar vazio para o teste
             drive.salvar_no_historico(url_noticia)
 
     if posts_enviados_com_sucesso > 0:
-        telegram.enviar_mensagem(f"✅ *Produção concluída!* {posts_enviados_com_sucesso} posts no padrão Tech entregues.")
-    else:
-        telegram.enviar_mensagem("⚠️ *Aviso:* Nenhum post atingiu o padrão de qualidade hoje.")
-
-    print("\n🏁 EXECUÇÃO FINALIZADA!")
+        telegram.enviar_mensagem(f"✅ *Produção concluída!* {posts_enviados_com_sucesso} posts gerados.")
 
 if __name__ == "__main__":
-    executar_pipeline_diario()
     executar_pipeline_diario()
