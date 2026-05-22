@@ -15,6 +15,7 @@ PEXELS_API_KEY = os.getenv("PEXELS_API_KEY")
 
 # Trata o Fallback caso local use BOT_TOKEN ou TOKEN puro
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN") or os.getenv("TELEGRAM_BOT_TOKEN")
+TELEGRAM_BOT_TOKEN = TELEGRAM_TOKEN
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
 # Parâmetros de Negócio Fixos para Automação em Nuvem
