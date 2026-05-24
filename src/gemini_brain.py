@@ -9,9 +9,42 @@ from src.copy_style import ESTILO_COPY_PROPRIO
 
 class GeminiBrain:
     def __init__(self):
-        if not GEMINI_API_KEY:
-            raise ValueError("Erro: GEMINI_API_KEY não foi configurada!")
-        self.client = genai.Client(api_key=GEMINI_API_KEY)
+        def buscar_noticias_reais_na_internet(self, historico_urls: list) -> str:
+        print("🔍 Iniciando varredura em tempo real na internet (Google Search Grounding)...")
+        
+        # Pega as últimas 30 URLs para dizer ao Gemini o que ignorar
+        historico_str = "\n".join(historico_urls[-30:]) if historico_urls else "Nenhum histórico recente."
+        
+        prompt_pesquisa = f"""
+        Você é um pesquisador e curador de conteúdo especializado no nicho de LegalTech e IA para advogados no Brasil.
+        Faça uma pesquisa atualizada na internet e traga as 5 notícias, tendências ou postagens virais mais recentes (focando nos últimos 2 a 3 dias).
+        
+        Priorize estritamente estas fontes, nesta ordem:
+        1. Influenciadores: Danilo Gato (@odanilogato), Maestros da IA (@maestrosdaia), Gabriel Adamuchi (@gabriel.adamuchi) e Bernardo Azevedo.
+        2. Portais Nacionais: Jota, ConJur, Migalhas, Jurídico Ágil.
+        3. Portais Internacionais: Artificial Lawyer.
+        
+        CRÍTICO - NÃO ABORDE ASSUNTOS DESTES LINKS QUE JÁ POSTAMOS:
+        {historico_str}
+        
+        Retorne um resumo completo de cada novidade encontrada, incluindo os nomes de IAs mencionadas (se houver) e, obrigatoriamente, a URL da fonte original.
+        """
+        
+        try:
+            response = self.client.models.generate_content(
+                model='gemini-2.5-flash',
+                contents=prompt_pesquisa,
+                config=types.GenerateContentConfig(
+                    # O PULO DO GATO: Liga o robô à pesquisa real do Google
+                    tools=[types.Tool(google_search=types.GoogleSearch())],
+                    temperature=0.3
+                )
+            )
+            print("✅ Varredura concluída com sucesso!")
+            return response.text
+        except Exception as e:
+            print(f"❌ Erro na varredura da internet: {e}")
+            return ""
 
     def selecionar_e_redigir_posts(self, conteudo_bruto_web: str, historico_urls: list) -> list:
         system_instruction = f"""
