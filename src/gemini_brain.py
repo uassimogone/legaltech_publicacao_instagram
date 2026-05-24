@@ -4,6 +4,7 @@ import urllib.parse
 from bs4 import BeautifulSoup
 from google import genai
 from google.genai import types
+from PIL import Image  # Adicionado para blindagem de imagens
 from src.config import GEMINI_API_KEY, MODELOS_TEXTO, MODELO_IMAGEM, PEXELS_API_KEY
 from src.copy_style import ESTILO_COPY_PROPRIO
 
@@ -16,7 +17,6 @@ class GeminiBrain:
     def buscar_noticias_reais_na_internet(self, historico_urls: list) -> str:
         print("🔍 Iniciando varredura em tempo real na internet (Google Search Grounding)...")
         
-        # Filtra as últimas 30 URLs para otimizar o prompt de exclusão
         historico_str = "\n".join(historico_urls[-30:]) if historico_urls else "Nenhum histórico recente."
         
         prompt_pesquisa = f"""
@@ -35,9 +35,7 @@ class GeminiBrain:
         """
         
         try:
-            # Seleciona o primeiro modelo estável homologado na lista de cascata
             modelo_pesquisa = MODELOS_TEXTO[1] if len(MODELOS_TEXTO) > 1 else "gemini-2.5-flash"
-            
             response = self.client.models.generate_content(
                 model=modelo_pesquisa,
                 contents=prompt_pesquisa,
@@ -66,17 +64,17 @@ class GeminiBrain:
         3. HASHTAGS OBRIGATÓRIAS: Adicione #LegalTech #IAJurídica #lawtech #artificiallawyer + 2 tags do tema.
         
         DIRETRIZES VISUAIS CONDICIONAIS (CASCATA):
-        - Avalie se a notícia cita nominalmente uma Inteligência Artificial específica (ex: Claude, ChatGPT, Harvey, Jus IA, Llama, Copilot, Ross, Jusbrasil).
-        - Se SIM, configure "contem_ia_nominal": true. O prompt_imagem deve descrever de forma conceitual e elegante o logotipo ou a representação visual moderna dessa IA citada.
-        - Se NÃO, configure "contem_ia_nominal": false. O prompt_imagem deve ser um conceito visual abstrato de tecnologia jurídica futurista.
+        - Avalie se a notícia cita nominalmente uma Inteligência Artificial específica.
+        - Se SIM, configure "contem_ia_nominal": true. O prompt_imagem deve descrever de forma conceitual o logotipo ou interface dessa IA.
+        - Se NÃO, configure "contem_ia_nominal": false. O prompt_imagem deve ser um conceito visual abstrato de tecnologia jurídica.
 
-        Responda estritamente em formato JSON válido. O formato deve ser uma lista de objetos contendo exatamente estes campos:
+        Responda estritamente em formato JSON válido. O formato deve ser uma lista de objetos contendo:
         [
           {{
             "titulo": "Título de impacto curto para a imagem",
-            "legenda_completa": "Legenda profunda seguindo o ESTILO_COPY_PROPRIO, respeitando as quebras de parágrafo, fontes e hashtags",
-            "prompt_imagem": "Prompt detalhado em inglês focado em design corporativo moderno high-tech",
-            "pexels_keyword": "palavra-chave simples em inglês para fallback de busca de imagem",
+            "legenda_completa": "Legenda profunda seguindo o ESTILO_COPY_PROPRIO",
+            "prompt_imagem": "Prompt em inglês focado em design corporativo moderno high-tech",
+            "pexels_keyword": "palavra-chave em inglês para busca",
             "url": "A URL real da notícia extraída",
             "contem_ia_nominal": true_ou_false
           }}
@@ -98,6 +96,15 @@ class GeminiBrain:
         except Exception as e:
             print(f"❌ Erro na geração/parsing de copywriting do Gemini: {e}")
             return []
+
+    def _validar_imagem(self, path: str) -> bool:
+        """Verifica se o arquivo salvo é realmente uma imagem íntegra e não um erro HTML disfarçado."""
+        try:
+            with Image.open(path) as img:
+                img.verify()
+            return True
+        except:
+            return False
 
     def gerar_imagem_ia(self, prompt_visual: str, keyword_pexels: str, url_noticia: str, ia_nominal: bool, output_path: str) -> str:
         if ia_nominal and url_noticia:
@@ -142,9 +149,8 @@ class GeminiBrain:
                 img_data = requests.get(img_url, timeout=10).content
                 with open(path, 'wb') as f:
                     f.write(img_data)
-                return path
-        except:
-            pass
+                if self._validar_imagem(path): return path
+        except: pass
         return ""
 
     def _gerar_google_imagen(self, prompt: str, path: str) -> str:
@@ -157,21 +163,20 @@ class GeminiBrain:
             for generated_image in result.generated_images:
                 with open(path, "wb") as f:
                     f.write(generated_image.image.image_bytes)
-                return path
-        except:
-            pass
+                if self._validar_imagem(path): return path
+        except: pass
         return ""
 
     def _gerar_imagem_pollinations(self, prompt: str, path: str) -> str:
         try:
             encoded_prompt = urllib.parse.quote(prompt)
             url = f"https://image.pollinations.ai/p/{encoded_prompt}?width=1080&height=1080&nologo=true"
-            data = requests.get(url, timeout=15).content
-            with open(path, "wb") as f:
-                f.write(data)
-            return path
-        except:
-            pass
+            r = requests.get(url, timeout=15)
+            if r.status_code == 200:
+                with open(path, "wb") as f:
+                    f.write(r.content)
+                if self._validar_imagem(path): return path
+        except: pass
         return ""
 
     def _buscar_imagem_pexels(self, keyword: str, path: str) -> str:
@@ -184,7 +189,6 @@ class GeminiBrain:
                 data = requests.get(img_url, timeout=10).content
                 with open(path, "wb") as f:
                     f.write(data)
-                return path
-        except:
-            pass
+                if self._validar_imagem(path): return path
+        except: pass
         return ""
