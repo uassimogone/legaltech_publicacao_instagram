@@ -5,31 +5,30 @@ from src.gemini_brain import GeminiBrain
 from src.image_manager import ImageManager
 from src.telegram_bot import TelegramBot
 
-def simular_captura_noticias():
-    return """
-    - Portal Jota: OAB regulamenta uso de ferramentas de Inteligência Artificial Generativa para confecção de petições iniciais. Decisão visa coibir alucinações de fatos jurídicos. URL: https://www.jota.info/tecnologia/oab-regulamenta-ia-peticoes-2026
-    - Danilo Gato Post: Testei o Claude 3.5 Sonnet para criar estruturas de contestação trabalhista e o resultado foi 4x mais rápido que o padrão. O segredo está no prompt que isola a causa de pedir. URL: https://danilogato.com.br/prompts-trabalhistas-ia
-    - Gabriel Adamuchi: Lançamento de nova extensão de agente autônomo focado em fazer varredura diária no Diário Oficial e gerar insights preditivos de perdas e danos. URL: https://youtube.com/@GabrielAdamuchi/agentes-diario-oficial
-    - LegalTech Space: Pesquisa aponta que 65% dos escritórios de advocacia de médio porte no Brasil adotaram alguma licença de IA corporativa no primeiro trimestre de 2026. URL: https://legaltechspace.substack.com/dados-mercado-brasil-2026
-    """
-
 def executar_pipeline_diario():
-    print(f"⏰ [{datetime.datetime.now().strftime('%H:%M:%S')}] Iniciando Pipeline...")
+    print(f"⏰ [{datetime.datetime.now().strftime('%H:%M:%S')}] Iniciando Pipeline Dinâmico...")
     
     drive = DriveManager()
     brain = GeminiBrain()
     img_render = ImageManager()
     telegram = TelegramBot()
 
+    # 1. Lê a memória e NÃO APAGA MAIS!
     historico = drive.ler_historico_urls()
-    historico = []  # Força o histórico a ficar vazio para o teste
-    conteudo_bruto = simular_captura_noticias()
 
-    print("🧠 Analisando notícias com Gemini...")
+    # 2. Busca na internet as novidades (Evitando o histórico)
+    conteudo_bruto = brain.buscar_noticias_reais_na_internet(historico)
+
+    if not conteudo_bruto:
+        print("☕ Falha ao obter notícias frescas da internet. Encerrando.")
+        return
+
+    # 3. Manda o texto pesquisado para aplicar o seu Tom de Voz (Copy)
+    print("🧠 Redigindo posts com a inteligência artificial...")
     posts_selecionados = brain.selecionar_e_redigir_posts(conteudo_bruto, historico)
 
     if not posts_selecionados:
-        print("☕ Nenhuma novidade relevante para hoje. Encerrando.")
+        print("☕ Nenhuma novidade relevante gerada hoje. Encerrando.")
         return
 
     posts_enviados_com_sucesso = 0
@@ -60,7 +59,7 @@ def executar_pipeline_diario():
             drive.salvar_no_historico(url_noticia)
 
     if posts_enviados_com_sucesso > 0:
-        telegram.enviar_mensagem(f"✅ *Produção concluída!* {posts_enviados_com_sucesso} posts gerados.")
+        telegram.enviar_mensagem(f"✅ *Produção concluída!* {posts_enviados_com_sucesso} posts reais gerados e postados.")
 
 if __name__ == "__main__":
     executar_pipeline_diario()
