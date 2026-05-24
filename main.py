@@ -6,7 +6,7 @@ from src.image_manager import ImageManager
 from src.telegram_bot import TelegramBot
 
 def executar_pipeline_diario():
-    print(f"⏰ [{datetime.datetime.now().strftime('%H('%M:%S')')}] Iniciando Pipeline Dinâmico e Real...")
+    print(f"⏰ [{datetime.datetime.now().strftime('%H:%M:%S')}] Iniciando Pipeline Dinâmico e Real...")
     
     drive = DriveManager()
     brain = GeminiBrain()
