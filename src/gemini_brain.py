@@ -9,41 +9,47 @@ from src.copy_style import ESTILO_COPY_PROPRIO
 
 class GeminiBrain:
     def __init__(self):
-        def buscar_noticias_reais_na_internet(self, historico_urls: list) -> str:
+        if not GEMINI_API_KEY:
+            raise ValueError("Erro: GEMINI_API_KEY não foi configurada!")
+        self.client = genai.Client(api_key=GEMINI_API_KEY)
+
+    def buscar_noticias_reais_na_internet(self, historico_urls: list) -> str:
         print("🔍 Iniciando varredura em tempo real na internet (Google Search Grounding)...")
         
-        # Pega as últimas 30 URLs para dizer ao Gemini o que ignorar
+        # Filtra as últimas 30 URLs para otimizar o prompt de exclusão
         historico_str = "\n".join(historico_urls[-30:]) if historico_urls else "Nenhum histórico recente."
         
         prompt_pesquisa = f"""
-        Você é um pesquisador e curador de conteúdo especializado no nicho de LegalTech e IA para advogados no Brasil.
-        Faça uma pesquisa atualizada na internet e traga as 5 notícias, tendências ou postagens virais mais recentes (focando nos últimos 2 a 3 dias).
+        Você é um pesquisador e curador de conteúdo experiente no nicho de LegalTech, IA Jurídica e automação para advogados no Brasil.
+        Sua tarefa é fazer uma varredura profunda na internet hoje e trazer as 5 principais novidades, tendências ou insights de mercado mais recentes.
         
-        Priorize estritamente estas fontes, nesta ordem:
-        1. Influenciadores: Danilo Gato (@odanilogato), Maestros da IA (@maestrosdaia), Gabriel Adamuchi (@gabriel.adamuchi) e Bernardo Azevedo.
-        2. Portais Nacionais: Jota, ConJur, Migalhas, Jurídico Ágil.
-        3. Portais Internacionais: Artificial Lawyer.
+        Siga estritamente esta ordem de prioridade de curadoria:
+        1. Novidades virais dos Influenciadores: Danilo Gato, Maestros da IA, Gabriel Adamuchi e Bernardo Azevedo.
+        2. Fatos e regulações nos Portais Nacionais: Jota, ConJur, Migalhas, Jurídico Ágil, Gustavo Rocha, Bruno Feigelson.
+        3. Movimentações globais em Portais Internacionais: Artificial Lawyer.
         
-        CRÍTICO - NÃO ABORDE ASSUNTOS DESTES LINKS QUE JÁ POSTAMOS:
+        REGRA CRÍTICA DE FILTRO: Não aborde assuntos ou links que já estejam listados no histórico abaixo:
         {historico_str}
         
-        Retorne um resumo completo de cada novidade encontrada, incluindo os nomes de IAs mencionadas (se houver) e, obrigatoriamente, a URL da fonte original.
+        Retorne um relatório estruturado contendo o resumo de cada fato marcante, as ferramentas de IA envolvidas e, obrigatoriamente, a URL de origem da notícia.
         """
         
         try:
+            # Seleciona o primeiro modelo estável homologado na lista de cascata
+            modelo_pesquisa = MODELOS_TEXTO[1] if len(MODELOS_TEXTO) > 1 else "gemini-2.5-flash"
+            
             response = self.client.models.generate_content(
-                model='gemini-2.5-flash',
+                model=modelo_pesquisa,
                 contents=prompt_pesquisa,
                 config=types.GenerateContentConfig(
-                    # O PULO DO GATO: Liga o robô à pesquisa real do Google
                     tools=[types.Tool(google_search=types.GoogleSearch())],
                     temperature=0.3
                 )
             )
-            print("✅ Varredura concluída com sucesso!")
+            print("✅ Varredura e filtragem de ineditismo concluídas com sucesso!")
             return response.text
         except Exception as e:
-            print(f"❌ Erro na varredura da internet: {e}")
+            print(f"❌ Erro na varredura ativa da internet: {e}")
             return ""
 
     def selecionar_e_redigir_posts(self, conteudo_bruto_web: str, historico_urls: list) -> list:
@@ -59,169 +65,126 @@ class GeminiBrain:
         2. FONTE OBRIGATÓRIA: No final da legenda, pule uma linha e escreva "Fonte: [Link da Notícia]".
         3. HASHTAGS OBRIGATÓRIAS: Adicione #LegalTech #IAJurídica #lawtech #artificiallawyer + 2 tags do tema.
         
-        DIRETRIZES VISUAIS CONDICIONAIS:
-        4. IA NOMINAL (true): Se a notícia focar numa IA específica (Claude, ChatGPT, Gemini, Manus, etc.), defina "contem_ia_nominal" como true. Crie um "prompt_imagem" focando no LOGO e na INTERFACE dessa IA.
-        5. SEM IA NOMINAL (false): Se for genérico, defina como false. Crie um "prompt_imagem" com servidores, redes e dados. PROIBIDO: martelo, balança, rostos humanos.
-        6. REGRAS DO PEXELS: O Pexels NÃO sabe o que é Claude ou Manus. A "pexels_keyword" NUNCA DEVE TER O NOME DA IA, apenas conceitos de tecnologia abstrata para evitar fotos concorrentes.
-        
-        Retorne a resposta RIGOROSAMENTE no formato JSON abaixo:
+        DIRETRIZES VISUAIS CONDICIONAIS (CASCATA):
+        - Avalie se a notícia cita nominalmente uma Inteligência Artificial específica (ex: Claude, ChatGPT, Harvey, Jus IA, Llama, Copilot, Ross, Jusbrasil).
+        - Se SIM, configure "contem_ia_nominal": true. O prompt_imagem deve descrever de forma conceitual e elegante o logotipo ou a representação visual moderna dessa IA citada.
+        - Se NÃO, configure "contem_ia_nominal": false. O prompt_imagem deve ser um conceito visual abstrato de tecnologia jurídica futurista.
+
+        Responda estritamente em formato JSON válido. O formato deve ser uma lista de objetos contendo exatamente estes campos:
         [
           {{
-            "titulo": "TÍTULO (MÁX 70 CARACT)",
-            "legenda_completa": "[Gancho]\\n\\n[Contexto]\\n\\n[Impacto]\\n\\n[Dica]\\n\\nFonte: [URL]\\n\\n#Hashtags...",
-            "contem_ia_nominal": true,
-            "prompt_imagem": "Prompt detalhado em inglês...",
-            "pexels_keyword": "abstract technology network",
-            "url": "URL original"
+            "titulo": "Título de impacto curto para a imagem",
+            "legenda_completa": "Legenda profunda seguindo o ESTILO_COPY_PROPRIO, respeitando as quebras de parágrafo, fontes e hashtags",
+            "prompt_imagem": "Prompt detalhado em inglês focado em design corporativo moderno high-tech",
+            "pexels_keyword": "palavra-chave simples em inglês para fallback de busca de imagem",
+            "url": "A URL real da notícia extraída",
+            "contem_ia_nominal": true_ou_false
           }}
         ]
         """
-
-        prompt_usuario = f"Conteúdo bruto:\n{conteudo_bruto_web}\nHistórico:\n{historico_urls}\n\nGere 3 posts em JSON."
-        response = None
         
-        for modelo in MODELOS_TEXTO:
-            print(f"🧠 Tentando acionar o modelo de texto: {modelo}...")
-            try:
-                response = self.client.models.generate_content(
-                    model=modelo,
-                    contents=prompt_usuario,
-                    config=types.GenerateContentConfig(
-                        system_instruction=system_instruction,
-                        response_mime_type="application/json",
-                        temperature=0.7
-                    )
-                )
-                print(f"✅ Sucesso! O modelo '{modelo}' processou a copy.")
-                break 
-            except Exception as e:
-                erro_curto = str(e).split('.')[0]
-                print(f"⚠️ Modelo '{modelo}' falhou ({erro_curto}). Próximo...")
-
-        if not response:
-            print("❌ Erro Crítico: Todos os modelos de texto falharam.")
-            return []
-
         try:
+            modelo_redacao = MODELOS_TEXTO[0] if MODELOS_TEXTO else "gemini-2.5-flash-lite"
+            response = self.client.models.generate_content(
+                model=modelo_redacao,
+                contents=f"Aqui está o conteúdo recente minerado da internet:\n\n{conteudo_bruto_web}\n\nEscreva os posts respeitando as regras.",
+                config=types.GenerateContentConfig(
+                    system_instruction=system_instruction,
+                    response_mime_type="application/json",
+                    temperature=0.5
+                )
+            )
             return json.loads(response.text)
         except Exception as e:
-            print(f"❌ Erro ao decodificar JSON: {e}")
+            print(f"❌ Erro na geração/parsing de copywriting do Gemini: {e}")
             return []
 
-    def _capturar_imagem_original_noticia(self, url: str, output_path: str) -> str:
-        """Raspador de imagens do portal da notícia."""
-        if not url or "http" not in url:
-            return None
-        print(f"🔍 Buscando imagem oficial direto no site da matéria...")
-        try:
-            headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)'}
-            html = requests.get(url, headers=headers, timeout=12).text
-            soup = BeautifulSoup(html, 'html.parser')
-            meta_img = soup.find("meta", property="og:image") or soup.find("meta", attrs={"name": "twitter:image"})
-            if meta_img and meta_img.get("content"):
-                img_url = meta_img["content"]
-                img_data = requests.get(img_url, headers=headers, timeout=12).content
-                with open(output_path, "wb") as f:
-                    f.write(img_data)
-                print("✅ Imagem oficial da notícia capturada com sucesso!")
-                return output_path
-        except Exception:
-            print("⚠️ Sem imagem oficial disponível no link.")
-        return None
-
-    def _gerar_google_imagen(self, prompt: str, output_path: str) -> str:
-        """Gerador Premium do Google."""
-        print(f"🎨 Tentando Google Imagen 3...")
-        try:
-            result = self.client.models.generate_images(
-                model=MODELO_IMAGEM,
-                prompt=prompt,
-                config=types.GenerateImagesConfig(number_of_images=1, output_mime_type="image/jpeg", aspect_ratio="4:3")
-            )
-            for img in result.generated_images:
-                with open(output_path, "wb") as f:
-                    f.write(img.image.image_bytes)
-                print("✅ Arte Google Imagen gerada!")
-                return output_path
-        except Exception:
-            print("⚠️ Google Imagen 3 indisponível ou sem cota.")
-        return None
-
-    def _gerar_imagem_pollinations(self, prompt: str, output_path: str) -> str:
-        """IA Visual Gratuita Open-Source."""
-        print(f"🎨 Acionando Pollinations.ai (Aguarde até 60s)...")
-        prompt_otimizado = f"{prompt}, no humans, strictly abstract technology, 8k resolution, highly detailed"
-        prompt_encoded = urllib.parse.quote(prompt_otimizado)
-        url = f"https://image.pollinations.ai/prompt/{prompt_encoded}?width=1024&height=768&nologo=true"
-        try:
-            headers = {'User-Agent': 'Mozilla/5.0'}
-            resp = requests.get(url, headers=headers, timeout=60)
-            if resp.status_code == 200:
-                with open(output_path, "wb") as f:
-                    f.write(resp.content)
-                print("✅ Arte IA gerada via Pollinations!")
-                return output_path
-        except Exception:
-            print("⚠️ Falha no Pollinations.")
-        return None
-
-    def _buscar_imagem_pexels(self, keyword: str, output_path: str) -> str:
-        """Banco de Imagens (Plano de Salvação Abstrato)."""
-        if not PEXELS_API_KEY:
-            return None
-        print(f"🔍 Buscando no Pexels para: '{keyword}'...")
-        headers = {"Authorization": PEXELS_API_KEY}
-        params = {"query": keyword, "per_page": 1, "orientation": "landscape", "size": "large"}
-        try:
-            resp = requests.get("https://api.pexels.com/v1/search", headers=headers, params=params)
-            photos = resp.json().get("photos", [])
-            if photos:
-                url = photos[0]["src"]["large2x"]
-                img_data = requests.get(url, timeout=12).content
-                with open(output_path, "wb") as f:
-                    f.write(img_data)
-                print("✅ Imagem Stock baixada!")
-                return output_path
-        except Exception:
-            print("⚠️ Falha no Pexels.")
-        return None
-
-    def gerar_imagem_ia(self, prompt_visual: str, keyword_pexels: str, url_noticia: str, contem_ia_nominal: bool, output_path: str) -> str:
-        """Orquestrador visual com lógica condicional precisa."""
-        
-        if contem_ia_nominal:
-            print("🚨 NOTÍCIA COM IA NOMINAL DETECTADA!")
-            # 1. Raspador (Para pegar logo original da capa da matéria)
+    def gerar_imagem_ia(self, prompt_visual: str, keyword_pexels: str, url_noticia: str, ia_nominal: bool, output_path: str) -> str:
+        if ia_nominal and url_noticia:
+            print("🌐 NOTÍCIA COM IA NOMINAL DETECTADA")
             print("👉 [Plano A] Acionando Raspador de Sites...")
             img = self._capturar_imagem_original_noticia(url_noticia, output_path)
             if img: return img
             
-            # 2. IA Google
             print("👉 [Plano B] Acionando IA Google...")
             img = self._gerar_google_imagen(prompt_visual, output_path)
             if img: return img
             
-            # 3. IA Pollinations
             print("👉 [Plano C] Acionando IA Pollinations...")
             img = self._gerar_imagem_pollinations(prompt_visual, output_path)
             if img: return img
             
-            # 4. Pexels (Focado apenas em cor/abstrato, não no nome da IA)
             print("👉 [Plano D] Acionando Pexels...")
             return self._buscar_imagem_pexels(keyword_pexels, output_path)
             
         else:
             print("🌐 NOTÍCIA GERAL DE TECNOLOGIA (Sem IA Nominal)")
-            # 1. IA Google
             print("👉 [Plano A] Acionando IA Google...")
             img = self._gerar_google_imagen(prompt_visual, output_path)
             if img: return img
             
-            # 2. IA Pollinations
             print("👉 [Plano B] Acionando IA Pollinations...")
             img = self._gerar_imagem_pollinations(prompt_visual, output_path)
             if img: return img
             
-            # 3. Pexels
             print("👉 [Plano C] Acionando Pexels...")
             return self._buscar_imagem_pexels(keyword_pexels, output_path)
+
+    def _capturar_imagem_original_noticia(self, url: str, path: str) -> str:
+        try:
+            headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)"}
+            r = requests.get(url, headers=headers, timeout=10)
+            if r.status_code != 200: return ""
+            soup = BeautifulSoup(r.text, 'html.parser')
+            meta_og = soup.find("meta", property="og:image") or soup.find("meta", attrs={"name": "twitter:image"})
+            if meta_og and meta_og.get("content"):
+                img_url = meta_og["content"]
+                img_data = requests.get(img_url, timeout=10).content
+                with open(path, 'wb') as f:
+                    f.write(img_data)
+                return path
+        except:
+            pass
+        return ""
+
+    def _gerar_google_imagen(self, prompt: str, path: str) -> str:
+        try:
+            result = self.client.models.generate_images(
+                model=MODELO_IMAGEM,
+                prompt=prompt,
+                config=types.GenerateImagesConfig(number_of_images=1, output_mime_type="image/jpeg")
+            )
+            for generated_image in result.generated_images:
+                with open(path, "wb") as f:
+                    f.write(generated_image.image.image_bytes)
+                return path
+        except:
+            pass
+        return ""
+
+    def _gerar_imagem_pollinations(self, prompt: str, path: str) -> str:
+        try:
+            encoded_prompt = urllib.parse.quote(prompt)
+            url = f"https://image.pollinations.ai/p/{encoded_prompt}?width=1080&height=1080&nologo=true"
+            data = requests.get(url, timeout=15).content
+            with open(path, "wb") as f:
+                f.write(data)
+            return path
+        except:
+            pass
+        return ""
+
+    def _buscar_imagem_pexels(self, keyword: str, path: str) -> str:
+        try:
+            url = f"https://api.pexels.com/v1/search?query={keyword}&per_page=1&orientation=square"
+            headers = {"Authorization": PEXELS_API_KEY}
+            r = requests.get(url, headers=headers, timeout=10).json()
+            if r.get("photos"):
+                img_url = r["photos"][0]["src"]["large"]
+                data = requests.get(img_url, timeout=10).content
+                with open(path, "wb") as f:
+                    f.write(data)
+                return path
+        except:
+            pass
+        return ""
