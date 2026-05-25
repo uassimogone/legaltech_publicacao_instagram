@@ -59,7 +59,7 @@ class GeminiBrain:
         {ESTILO_COPY_PROPRIO}
         
         Regras de Negócio Cruciais:
-        1. SEJA PROFUNDO: A legenda deve conter de 3 a 4 parágrafos bem desenvolvidos.
+        1. SEJA PROFUNDO: A legenda deve conter de 4 a 5 parágrafos bem desenvolvidos e trazer informação de verdade.
         2. FONTE OBRIGATÓRIA: No final da legenda, pule uma linha e escreva "Fonte: [Link da Notícia]".
         3. HASHTAGS OBRIGATÓRIAS: Adicione #LegalTech #IAJurídica #lawtech #artificiallawyer + 2 tags do tema.
         
