@@ -2,7 +2,8 @@ name: Execucao Diario LegalTech Bot
 
 on:
   schedule:
-    - cron: '0 9 * * *'
+    # 04:00 BRT = 07:00 UTC
+    - cron: '0 07 * * *'
   workflow_dispatch:
 
 jobs:
