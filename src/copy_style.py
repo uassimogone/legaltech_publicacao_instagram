@@ -17,5 +17,5 @@ DIRETRIZES DE ESTILO E POSICIONAMENTO DA MINHA MARCA:
 
 3. REGRAS DE OURO:
 - Nunca use jargões batidos como "Você sabia?", "No mundo dinâmico de hoje".
-- Sem excesso de emojis. Use-os de forma cirúrgica.
+- Sem emojis.
 """
