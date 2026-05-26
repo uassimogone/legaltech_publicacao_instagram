@@ -4,7 +4,7 @@ import urllib.parse
 from bs4 import BeautifulSoup
 from google import genai
 from google.genai import types
-from PIL import Image  # Adicionado para blindagem de imagens
+from PIL import Image
 from src.config import GEMINI_API_KEY, MODELOS_TEXTO, MODELO_IMAGEM, PEXELS_API_KEY
 from src.copy_style import ESTILO_COPY_PROPRIO
 
@@ -17,25 +17,27 @@ class GeminiBrain:
     def buscar_noticias_reais_na_internet(self, historico_urls: list) -> str:
         print("🔍 Iniciando varredura em tempo real na internet (Google Search Grounding)...")
         
+        # Filtra as últimas 30 URLs para otimizar o prompt de exclusão
         historico_str = "\n".join(historico_urls[-30:]) if historico_urls else "Nenhum histórico recente."
         
         prompt_pesquisa = f"""
-        Você é um pesquisador e curador de conteúdo experiente no nicho de LegalTech, IA Jurídica e automação para advogados no Brasil.
-        Sua tarefa é fazer uma varredura profunda na internet hoje e trazer as 5 principais novidades, tendências ou insights de mercado mais recentes.
+        Você é um caçador de tendências e pesquisador sênior focado em Inteligência Artificial, Big Techs, Agentes Autônomos e Inovação Tecnológica Global.
+        Sua tarefa é fazer uma varredura profunda na internet hoje e trazer as 5 principais novidades, lançamentos ou insights mais impactantes e disruptivos do mundo tech.
         
-        Siga estritamente esta ordem de prioridade de curadoria:
-        1. Novidades virais dos Influenciadores: Danilo Gato, Maestros da IA, Gabriel Adamuchi e Bernardo Azevedo.
-        2. Fatos e regulações nos Portais Nacionais: Jota, ConJur, Migalhas, Jurídico Ágil, Gustavo Rocha, Bruno Feigelson.
-        3. Movimentações globais em Portais Internacionais: Artificial Lawyer.
+        Siga estritamente estes critérios de curadoria para a busca:
+        1. Priorize lançamentos de grandes modelos (OpenAI, Google, Anthropic), novas ferramentas de automação extrema, LLMs locais, agentes autônomos funcionais e avanços de IA generativa.
+        2. Busque ativamente o que está viralizando no cruzamento de tecnologia avançada e mercado legal consultando referências de inovação (Danilo Gato, Maestros da IA, Gabriel Adamuchi, Bernardo Azevedo, Artificial Lawyer).
+        3. Elimine conteúdos burocráticos, notícias lentas de rotina de tribunais, artigos puramente acadêmicos ou decisões administrativas enfadonhas. O foco é inovação viva, tecnológica e disruptiva.
         
         REGRA CRÍTICA DE FILTRO: Não aborde assuntos ou links que já estejam listados no histórico abaixo:
         {historico_str}
         
-        Retorne um relatório estruturado contendo o resumo de cada fato marcante, as ferramentas de IA envolvidas e, obrigatoriamente, a URL de origem da notícia.
+        Retorne um relatório estruturado contendo o resumo técnico do avanço tecnológico, as ferramentas de IA envolvidas e, obrigatoriamente, la URL de origem da notícia.
         """
         
         try:
             modelo_pesquisa = MODELOS_TEXTO[1] if len(MODELOS_TEXTO) > 1 else "gemini-2.5-flash"
+            
             response = self.client.models.generate_content(
                 model=modelo_pesquisa,
                 contents=prompt_pesquisa,
@@ -53,28 +55,28 @@ class GeminiBrain:
     def selecionar_e_redigir_posts(self, conteudo_bruto_web: str, historico_urls: list) -> list:
         system_instruction = f"""
         Você é o Especialista em Copywriting e Diretor de Arte da nossa LegalTech.
-        Sua missão é ler o conteúdo coletado da internet e criar 3 posts individuais.
+        Sua missão é ler o conteúdo coletado da internet e criar 3 posts individuais extremamente magnéticos.
         
-        Use obrigatoriamente as diretrizes de voz e estilo abaixo:
+        Use obrigatoriamente as diretrizes de voz, ganchos e estilo contidos abaixo:
         {ESTILO_COPY_PROPRIO}
         
         Regras de Negócio Cruciais:
-        1. SEJA PROFUNDO: A legenda deve conter de 4 a 5 parágrafos bem desenvolvidos e trazer informação de verdade.
+        1. SEJA PROFUNDO: A legenda deve conter de 3 a 4 parágrafos robustos e muito bem explicados.
         2. FONTE OBRIGATÓRIA: No final da legenda, pule uma linha e escreva "Fonte: [Link da Notícia]".
-        3. HASHTAGS OBRIGATÓRIAS: Adicione #LegalTech #IAJurídica #lawtech #artificiallawyer + 2 tags do tema.
+        3. HASHTAGS OBRIGATÓRIAS: Adicione #LegalTech #IAJurídica #lawtech #artificiallawyer + 2 tags focadas no tema específico do post.
         
         DIRETRIZES VISUAIS CONDICIONAIS (CASCATA):
-        - Avalie se a notícia cita nominalmente uma Inteligência Artificial específica.
-        - Se SIM, configure "contem_ia_nominal": true. O prompt_imagem deve descrever de forma conceitual o logotipo ou interface dessa IA.
-        - Se NÃO, configure "contem_ia_nominal": false. O prompt_imagem deve ser um conceito visual abstrato de tecnologia jurídica.
+        - Avalie se a notícia cita nominalmente uma Inteligência Artificial específica (ex: Claude, ChatGPT, Harvey, Jus IA, Llama, Copilot, Ross, Jusbrasil).
+        - Se SIM, configure "contem_ia_nominal": true. O prompt_imagem deve descrever de forma conceitual e elegante o logotipo ou a representação visual moderna dessa IA citada.
+        - Se NÃO, configure "contem_ia_nominal": false. O prompt_imagem deve ser um conceito visual abstrato de tecnologia avançada futurista.
 
-        Responda estritamente em formato JSON válido. O formato deve ser uma lista de objetos contendo:
+        Responda estritamente em formato JSON válido. O formato deve ser uma lista de objetos contendo exatamente estes campos:
         [
           {{
             "titulo": "Título de impacto curto para a imagem",
-            "legenda_completa": "Legenda profunda seguindo o ESTILO_COPY_PROPRIO",
-            "prompt_imagem": "Prompt em inglês focado em design corporativo moderno high-tech",
-            "pexels_keyword": "palavra-chave em inglês para busca",
+            "legenda_completa": "Legenda profunda seguindo o ESTILO_COPY_PROPRIO, respeitando as quebras de parágrafo, fontes e hashtags",
+            "prompt_imagem": "Prompt detalhado em inglês focado em design corporativo moderno high-tech",
+            "pexels_keyword": "palavra-chave simples em inglês para fallback de busca de imagem",
             "url": "A URL real da notícia extraída",
             "contem_ia_nominal": true_ou_false
           }}
@@ -85,7 +87,7 @@ class GeminiBrain:
             modelo_redacao = MODELOS_TEXTO[0] if MODELOS_TEXTO else "gemini-2.5-flash-lite"
             response = self.client.models.generate_content(
                 model=modelo_redacao,
-                contents=f"Aqui está o conteúdo recente minerado da internet:\n\n{conteudo_bruto_web}\n\nEscreva os posts respeitando as regras.",
+                contents=f"Aqui está o conteúdo recente minerado da internet:\n\n{conteudo_bruto_web}\n\nEscreva os posts respeitando rigorosamente as novas regras estabelecidas.",
                 config=types.GenerateContentConfig(
                     system_instruction=system_instruction,
                     response_mime_type="application/json",
@@ -98,7 +100,6 @@ class GeminiBrain:
             return []
 
     def _validar_imagem(self, path: str) -> bool:
-        """Verifica se o arquivo salvo é realmente uma imagem íntegra e não um erro HTML disfarçado."""
         try:
             with Image.open(path) as img:
                 img.verify()
