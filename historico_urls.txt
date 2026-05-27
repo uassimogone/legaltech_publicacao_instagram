@@ -39,3 +39,6 @@ https://www.conjur.com.br/2026-mai-26/desafios-eticos-regulacao-ia-decisoes-judi
 https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE2sroeNpgnOfuwMhP3b0neJypWwCJ9MGZ8kiKn8zSIf0wrb9TZHYsFPrhB1VQvzh5d4_Xhkl4uC--_sdrND69v5lidAzcYhrfp1lz5af4tmmXj0aWPU2tW8xjVsvyDaDtMF41IPcMqMU4L1ptviDE69IDwgsEwUEQSlXdVUzgi59t
 https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGRiZPjy8n3FM5BO8maXiUOfZJCA-D_ism-kPmkZjwKQJziGUo0RGcPXuKWS64qdTNKLk55KLUTKtIBnVe3UQLLPrS6YSVtgs05QLyTS35hMPAKzYGJiel6rlXwrqpFaYwpWQFYPWJMU44=
 https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF0TDeG4ejJ-w-6KsMC1GDEEPfSsyf-NHutoAndRaffhvsrrRnYO2gftxgAf0h2l0EDRFE3Mn0kYkZ0h_XfGj7l3S9NtGr4nMJEKRfbsA5wY00esG2AXwzRAkGFFpjRvf3R6we1fr2vkWaLM5uPSK_d4sf99-ZsGlaVIAVe4XKtLng-QArKpTsxKqnGTh0=
+https://deepmind.google/blog/gemini-pro-legal-launch/
+https://www.anthropic.com/news/claude-3-5-opus
+https://lexiflow.ai/legalflow-ai-on-premise-llms
