@@ -48,3 +48,6 @@ https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGSR3gB9zyQj
 https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFfJ52m3D7OejJwulGX0GL4YfdCTi-VoEOqJqLRUFtKrSQFFN2jb_xPN41EBiRHzUsfIoGjZ7RZUX8TeX3ydhj51y-OrjZIHxOB7ERntVYau10fLKKhrG10pPPNcxGHsYFIzAe8fQHhjYYiRhs8AUxzJINkQd1Uh8ZK3pj1pbtKU4x6wL9G0szjaAjNo-Un7ObAGDWJZR03
 https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFXh5YQdw6CCzFIsoSGnK5SPnWoWBXmN3pbQNraVmMJL-AkhH54xVXEAtwH0t8bVetb03OPJMFdwdEa51j8IUDvcxkhHO3H1Tfnbf_mwm5S-ytdtluor-2ZMqwxtxq_02Fi81B59uNIFw==
 https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHblLecN87HHIjpNIxN_DHUpaTTfhIyGeEAjYgwjarD1XTsUGln8sc7CnuB6DM_ZjuoXiF_6iCh7uz3L5lMRfVtnyxfExbBrzcHPEgA7zchZ_qgadHfJY00DxcvLIQpZqeRUpp_LWok7K2ymJCYUdo2TCbf7BfIH1sWfg==
+https://openai.com/blog/project-chimera-autonomous-agents
+https://deepmind.google/nexus-local-hybrid-llms
+https://www.anthropic.com/news/claude-3-5-opus-pro-business-automation
