@@ -25,7 +25,7 @@ class GeminiBrain:
         Sua tarefa é fazer uma varredura profunda na internet hoje e trazer as 5 principais novidades, lançamentos ou insights mais impactantes e disruptivos do mundo tech.
         
         Siga estritamente estes critérios de curadoria para a busca:
-        1. Priorize lançamentos de grandes modelos (OpenAI, Google, Anthropic), novas ferramentas de automação extrema, LLMs locais, agentes autônomos funcionais e avanços de IA generativa.
+        1. Priorize lançamentos de grandes modelos (OpenAI, Google, Anthropic, Meta), novas ferramentas de automação extrema, LLMs locais, agentes autônomos funcionais e avanços de IA generativa.
         2. Busque ativamente o que está viralizando no cruzamento de tecnologia avançada e mercado legal consultando referências de inovação (Danilo Gato, Maestros da IA, Gabriel Adamuchi, Bernardo Azevedo, Artificial Lawyer).
         3. Elimine conteúdos burocráticos, notícias lentas de rotina de tribunais, artigos puramente acadêmicos ou decisões administrativas enfadonhas. O foco é inovação viva, tecnológica e disruptiva.
         
@@ -67,8 +67,8 @@ class GeminiBrain:
         
         DIRETRIZES VISUAIS CONDICIONAIS (CASCATA):
         - Avalie se a notícia cita nominalmente uma Inteligência Artificial específica (ex: Claude, ChatGPT, Harvey, Jus IA, Llama, Copilot, Ross, Jusbrasil).
-        - Se SIM, configure "contem_ia_nominal": true. O prompt_imagem deve descrever de forma conceitual e elegante o logotipo ou a representação visual moderna dessa IA citada.
-        - Se NÃO, configure "contem_ia_nominal": false. O prompt_imagem deve ser um conceito visual abstrato de tecnologia avançada futurista.
+        - Se SIM, configure "contem_ia_nominal": true. O prompt_imagem deve descrever de forma conceitual e elegante o logotipo ou a representação visual moderna dessa IA citada. Se possível colocar o próprio logotipo da Inteligência Artificial específica (ex: Claude, ChatGPT, Harvey, Jus IA, Llama, Copilot, Ross, Jusbrasil). 
+        - Se NÃO, configure "contem_ia_nominal": false. O prompt_imagem deve ser um conceito visual abstrato de tecnologia avançada futurista, que tenha apelo visual.
 
         Responda estritamente em formato JSON válido. O formato deve ser uma lista de objetos contendo exatamente estes campos:
         [
