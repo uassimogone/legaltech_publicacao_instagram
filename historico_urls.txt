@@ -69,3 +69,6 @@ https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFShj1kv533H
 https://blog.google/technology/ai/google-project-astra-ai-assistant/
 https://ai.meta.com/blog/llama-4-open-source-ai-model/
 https://openai.com/blog/agentgpt-pro-autonomous-agents-with-long-term-memory/
+https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEdI306-3uKkmaGl_vcxLjAu8CVIMKmCnoECcb3e4HCNzk8i2oWtZcrKi4SO3-JzaJbIZ8P7k9YN-gYOkGtIrTKGmh3woXSq20FM_rEkatrpr7W44QoDn73PQ70zW8ov1h9bd73xvI_uqyp6_NBTsy_E2IbzjDeSVj7svPmI44zGYUAIXuz
+https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFXQ18Mbp-hFpD5241XSzlb9rZHQAOulqo1ooh94w2TNcJ_n1-1YyEX4gstYJRC2uWrZUlgoyXpKflJp-E_crae1NR96mRjuTpVlqE2oWkRszUsBe2kRP4J1II9R_3NBqiQqIrFb1Adccx_m-RAGTcKeyw2d9qhcNN8RsU1g613cV90cqRTuEtYvzvxhMKeeJrBfi3ziZbT4m_E7Zn9jtrkFuHnjA_AFfLRTLQGCfnjJ1pTwg==
+https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHVv7p966dGEjlvmV-lWNbYyoRR6kksvgF4NB9tEr3uyBRc6zVxNr1UHuk0gRzsTuwBZ1FL48My_pvyyFf-tSXybyArOa7Fykqm_rtzgR4FplOWuGGMOZeOU3Ai5nL9CLwwOtYntSKlyTGQ94F8XgrU-OeAH08Pqi_wwqbXlXJQyQrQkYXpiQ==
