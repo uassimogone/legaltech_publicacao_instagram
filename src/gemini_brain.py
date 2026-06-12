@@ -15,6 +15,7 @@ class GeminiBrain:
         self.client = genai.Client(api_key=GEMINI_API_KEY)
 
     def buscar_noticias_reais_na_internet(self, historico_urls: list) -> str:
+        import time
         print("🔍 Iniciando varredura em tempo real na internet (Google Search Grounding)...")
         
         # Filtra as últimas 30 URLs para otimizar o prompt de exclusão
@@ -25,32 +26,36 @@ class GeminiBrain:
         Sua tarefa é fazer uma varredura profunda na internet hoje e trazer as 5 principais novidades, lançamentos ou insights mais impactantes e disruptivos do mundo tech.
         
         Siga estritamente estes critérios de curadoria para a busca:
-        1. Priorize lançamentos de grandes modelos (OpenAI, Google, Anthropic, Meta), novas ferramentas de automação extrema, LLMs locais, agentes autônomos funcionais e avanços de IA generativa.
+        1. Priorize lançamentos de grandes modelos (OpenAI, Google, Anthropic), novas ferramentas de automação extrema, LLMs locais, agentes autônomos funcionais e avanços de IA generativa.
         2. Busque ativamente o que está viralizando no cruzamento de tecnologia avançada e mercado legal consultando referências de inovação (Danilo Gato, Maestros da IA, Gabriel Adamuchi, Bernardo Azevedo, Artificial Lawyer).
         3. Elimine conteúdos burocráticos, notícias lentas de rotina de tribunais, artigos puramente acadêmicos ou decisões administrativas enfadonhas. O foco é inovação viva, tecnológica e disruptiva.
         
         REGRA CRÍTICA DE FILTRO: Não aborde assuntos ou links que já estejam listados no histórico abaixo:
         {historico_str}
         
-        Retorne um relatório estruturado contendo o resumo técnico do avanço tecnológico, as ferramentas de IA envolvidas e, obrigatoriamente, la URL de origem da notícia.
+        Retorne um relatório estruturado contendo o resumo técnico do avanço tecnológico, as ferramentas de IA envolvidas e, obrigatoriamente, a URL de origem da notícia.
         """
         
-        try:
-            modelo_pesquisa = MODELOS_TEXTO[1] if len(MODELOS_TEXTO) > 1 else "gemini-2.5-flash"
-            
-            response = self.client.models.generate_content(
-                model=modelo_pesquisa,
-                contents=prompt_pesquisa,
-                config=types.GenerateContentConfig(
-                    tools=[types.Tool(google_search=types.GoogleSearch())],
-                    temperature=0.3
+        # CASCATA DE RESILIÊNCIA: Tenta todos os modelos disponíveis antes de desistir
+        for modelo_tentativa in MODELOS_TEXTO:
+            try:
+                print(f"🔄 Tentando pesquisa com o modelo {modelo_tentativa}...")
+                response = self.client.models.generate_content(
+                    model=modelo_tentativa,
+                    contents=prompt_pesquisa,
+                    config=types.GenerateContentConfig(
+                        tools=[types.Tool(google_search=types.GoogleSearch())],
+                        temperature=0.3
+                    )
                 )
-            )
-            print("✅ Varredura e filtragem de ineditismo concluídas com sucesso!")
-            return response.text
-        except Exception as e:
-            print(f"❌ Erro na varredura ativa da internet: {e}")
-            return ""
+                print("✅ Varredura e filtragem de ineditismo concluídas com sucesso!")
+                return response.text
+            except Exception as e:
+                print(f"⚠️ Erro 503/Overload com o modelo {modelo_tentativa}. Aguardando 5 segundos para tentar o próximo...")
+                time.sleep(5) # Pausa dramática para a API do Google respirar
+                
+        print("❌ Todos os modelos de busca falharam por indisponibilidade da API do Google.")
+        return ""
 
     def selecionar_e_redigir_posts(self, conteudo_bruto_web: str, historico_urls: list) -> list:
         system_instruction = f"""
