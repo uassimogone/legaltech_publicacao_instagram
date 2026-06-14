@@ -87,3 +87,6 @@ https://ai.meta.com/blog/echo-real-time-3d-generation/
 https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFR4BkLAAYnMGiQdxkTasdrCessKtuXCizfX59zjWrv05ilPKw2brAn7rCHCt06sBPjnSh39NYscnYCWk1cQzI9kAyk06XYcsMpoZRUT0eSrRKbIs4hqao=
 https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHpKO2k_uU3w6luZ9nWrHLjTNa1fiuxGwxcZc_M_jy9wysC7V24SkIPXp97ptfBaBoRYFXtKZZVVCDIg7jxRgnxaBznLqSDj1amM2XoV0RlJbU2TWM80tNwdB91CP_kUrlWCG2wj0JgUbB2QGP1owwU69U=
 https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGe21Txl3T5FFvy0wiw7PZ5V4JAUf6E_KoPHpLUfulsonOub_aqO5Xb8cpbwpZjPQGmKPtYEOORQsqMo1daGIjQmAl9dSYsRwHepDmlx8UXzU-j1RabnbAdG03oEJAlNxiFHyD-Tzv066TxUfH5BB14jfK8vvf41wnsXnR53otriGW1QCx9XfOracc6jsBXmkWg-wckZVAgyArqHQ=
+https://blog.google/technology/ai/google-gemini-1-5-pro-2m-context-window/
+https://ai.meta.com/blog/meta-llama-3/
+https://openai.com/index/hello-gpt-4o/
