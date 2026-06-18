@@ -90,3 +90,5 @@ https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGe21Txl3T5F
 https://blog.google/technology/ai/google-gemini-1-5-pro-2m-context-window/
 https://ai.meta.com/blog/meta-llama-3/
 https://openai.com/index/hello-gpt-4o/
+https://cloud.google.com/blog/products/ai-machine-learning/google-cloud-next-2024-ai-agents-gemini-enterprise-agent
+https://www.portaltela.com.br/noticias/brasil/hub-360-em-brasilia-utiliza-ia-para-fortalecer-o-terceiro-setor/
