@@ -93,3 +93,6 @@ https://openai.com/index/hello-gpt-4o/
 https://cloud.google.com/blog/products/ai-machine-learning/google-cloud-next-2024-ai-agents-gemini-enterprise-agent
 https://www.portaltela.com.br/noticias/brasil/hub-360-em-brasilia-utiliza-ia-para-fortalecer-o-terceiro-setor/
 https://conteudo-minerado-url-placeholder.com
+https://pplware.sapo.pt/android/google-lancou-o-android-17-e-e-hora-de-atualizar-para-o-pixel-drop-de-junho/
+https://openai.com/research/
+https://exame.com/tecnologia/google-anuncia-mudancas-e-novidades-aos-usuarios-veja-as-principais-atualizacoes/
