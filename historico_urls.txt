@@ -96,3 +96,6 @@ https://conteudo-minerado-url-placeholder.com
 https://pplware.sapo.pt/android/google-lancou-o-android-17-e-e-hora-de-atualizar-para-o-pixel-drop-de-junho/
 https://openai.com/research/
 https://exame.com/tecnologia/google-anuncia-mudancas-e-novidades-aos-usuarios-veja-as-principais-atualizacoes/
+https://www.openai.com/blog/jalapeno-ai-processor
+https://www.openai.com/blog/gpt-5-5-cyber-security-focus
+https://www.google.com/chrome/gemini-integration
