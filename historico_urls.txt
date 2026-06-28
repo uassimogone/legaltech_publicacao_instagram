@@ -105,3 +105,6 @@ https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG1fvDqa5bgO
 https://www.openai.com/blog/gpt-5-6-launch
 https://www.anthropic.com/news/mythos-5-access
 https://www.techcrunch.com/ai-agents-2026
+https://www.macrumors.com/2026/06/26/openai-launches-gpt-5-6-sol-terra-luna/
+https://www.correio.pt/internacional/eua-permitem-que-algumas-empresas-usem-modelo-mais-avancado-de-ia-da-anthropic-993148
+https://tera.digital/blog/google-io-2026-o-que-muda-com-a-era-agentica-do-gemini/
