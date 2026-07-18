@@ -108,3 +108,6 @@ https://www.techcrunch.com/ai-agents-2026
 https://www.macrumors.com/2026/06/26/openai-launches-gpt-5-6-sol-terra-luna/
 https://www.correio.pt/internacional/eua-permitem-que-algumas-empresas-usem-modelo-mais-avancado-de-ia-da-anthropic-993148
 https://tera.digital/blog/google-io-2026-o-que-muda-com-a-era-agentica-do-gemini/
+https://openai.com/index/gpt-5-6/
+https://www.northeasttimes.com/2026/07/17/google-weaves-ai-into-playlist-making-grocery-shopping-and-design/
+https://lide.com.br/noticias/ia-chinesa-de-codigo-aberto-desafia-rivais-dos-eua-e-abala-fabricantes-de-chips/
