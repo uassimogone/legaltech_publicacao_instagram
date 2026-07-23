@@ -115,3 +115,5 @@ https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH6DEz4kv77v
 https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF15Hu0m3P-IxyMgD0OeQJAduJ0fhDM0wqHi94AJtdtUAYF-V_ZMJv0fM5Xay0FuK63sIAmqCH8JBLMQWCy9KPWzuXZKc62epWIGFh55ceeBxG_IuPV18sfmRLcnwR1EjSp0PpgVw==
 https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG8lYR8XlzIjS6M6fO4uPPKvtsOKfWv9IY3BLpZ7wqWH2Af6gveR0F0Y_r-flAUR6NolBUHZROEkGzLUND0SKTeqGFx8bnlFpkw6lPXX4GYeUhuPV61oicJxl2LTSNIXjArXj2kq_yA2PFK1y_RPrU6dpZRraPiV4OQv2j0jbL5ZhvTbxa3F4P1hRo-l_hC8bKwIUUcUh7asl2qdPBcX5gvOAvfsNlpTtrwhO35f4KEb1qO1Fbx53Yye4nKpU-eVEh2VPt-7aPUtZUXZj1aJerhv7NI9JSIvmzHmFuj_zsv0w4IGJ7i3TJRx2_rMo2ubH0=
 https://www.openai.com/index/gpt-5-6/
+https://www.openai.com/index/presence-and-gpt-5-6-sol
+https://cloud.google.com/blog/products/ai-machine-learning/google-next-2026-agentic-ai-advancements
