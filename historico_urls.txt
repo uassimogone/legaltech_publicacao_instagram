@@ -121,3 +121,6 @@ https://www.openai.com/index/gpt-5-6-sol/
 https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEHyYIbqTHPDXRjsRZHdnfY70sosMCaX8n9PZU6z874eQVDNdw8FDUz9l9LxxJiKpjC2O-RsvtizBHoWcVs3i66RihQCBTAu82GsdDT3bt-3MT8jro0zcBNI4PE2dL0rg50-LUDOxFjPIG7Uk1qpvzZzG_2R3tMoKfZag==
 https://www.openai.com/index/chatgpt-work
 https://www.moonshot.ai/kimi-k3-agentenv
+https://www.microsoft.com/en-us/security/blog/2024/07/25/microsoft-launches-project-perception-to-revolutionize-ai-powered-cybersecurity/
+https://www.europarl.europa.eu/news/en/press-room/20240614IPR24130/artificial-intelligence-act-approved
+https://openai.com/blog/gpt-5-6-pricing-and-performance-updates
