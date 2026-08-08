@@ -129,3 +129,4 @@ https://www.openai.com/index/gpt-5-6-sol-launch
 https://www.openai.com/index/gpt-red-launch
 https://www.natura.com.br/ia-fragrance-pilot
 https://www.legaltechconsolidation.com
+https://www.openai.com/index/hello-gpt-4o/
