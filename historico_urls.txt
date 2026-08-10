@@ -131,3 +131,6 @@ https://www.natura.com.br/ia-fragrance-pilot
 https://www.legaltechconsolidation.com
 https://www.openai.com/index/hello-gpt-4o/
 https://www.openai.com/blog/gpt-5-6-cyber-security-focus
+https://www.meta.com/blog/muse-code-launch
+https://deepmind.google/news/strategic-reorganization
+https://openai.com/blog/astra-development-pause
