@@ -134,3 +134,6 @@ https://www.openai.com/blog/gpt-5-6-cyber-security-focus
 https://www.meta.com/blog/muse-code-launch
 https://deepmind.google/news/strategic-reorganization
 https://openai.com/blog/astra-development-pause
+https://www.gartner.com/en/industries/technology/trends/gartner-predicts-ai-agents-in-enterprise-applications
+https://www.microsoft.com/en-us/microsoft-maia-300-chip
+https://www.openai.com/blog/gpt-5-6-launch-updates
