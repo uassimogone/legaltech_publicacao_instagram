@@ -139,3 +139,6 @@ https://www.microsoft.com/en-us/microsoft-maia-300-chip
 https://www.openai.com/blog/gpt-5-6-launch-updates
 https://www.openai.com/index/gpt-5-6-pricing-and-performance-updates
 https://www.docusign.com/momentum
+https://www.indiatoday.in/technology/news/story/chatgpt-starts-showing-ads-in-india-openai-sending-email-to-inform-users-2577294-2026-08-13
+https://gemmaautomations.com.br/blog/do-chatbot-ao-agente-autonomo-as-novidades-de-ia-que-estao-mudando-as-empresas-agora/
+https://www.barrons.com/articles/anthropic-decart-ai-compute-costs-01723533800
