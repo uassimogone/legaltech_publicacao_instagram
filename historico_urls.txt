@@ -159,3 +159,4 @@ https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFgtoyJx7VNS
 https://openai.com/index/codex-harness-framework-release
 https://www.mckinsey.com/featured-insights/future-of-work/automation-and-the-future-of-work-in-america
 https://www.openai.com/index/chatgpt-for-teens
+https://www.google.com/gemini/enterprise-legal-financial
