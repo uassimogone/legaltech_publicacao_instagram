@@ -162,3 +162,6 @@ https://www.openai.com/index/chatgpt-for-teens
 https://www.google.com/gemini/enterprise-legal-financial
 https://www.alibabacloud.com/news/alibabacloud-launches-first-south-america-region-in-brazil
 https://www.nauta.com/news/nauta-secures-strategic-investment-led-by-bmw-i-ventures-bosch-ventures-and-hitachi-ventures
+https://www.google.com/ai/cost-optimization-tools
+https://www.openai.com/blog/model-updates-and-discontinuations
+https://www.testmuai.com/agent-assurance-launch
