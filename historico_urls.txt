@@ -165,3 +165,6 @@ https://www.nauta.com/news/nauta-secures-strategic-investment-led-by-bmw-i-ventu
 https://www.google.com/ai/cost-optimization-tools
 https://www.openai.com/blog/model-updates-and-discontinuations
 https://www.testmuai.com/agent-assurance-launch
+https://www.example.com/south-korea-generative-ai-for-all
+https://www.example.com/bank-of-england-ai-financial-risk
+https://www.example.com/google-gemini-notebook-expert-intelligence
