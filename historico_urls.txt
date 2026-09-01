@@ -168,3 +168,6 @@ https://www.testmuai.com/agent-assurance-launch
 https://www.example.com/south-korea-generative-ai-for-all
 https://www.example.com/bank-of-england-ai-financial-risk
 https://www.example.com/google-gemini-notebook-expert-intelligence
+https://www.example.com/timesfm-3-launch
+https://www.example.com/search-console-ai-reports
+https://www.example.com/south-korea-ai-for-all
