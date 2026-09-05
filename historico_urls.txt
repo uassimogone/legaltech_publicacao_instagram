@@ -177,3 +177,6 @@ https://ai.google.dev/models/gemini-flash
 https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEN_Ikgbe23zJ-nrQpEw1xj3OLVTwNu_CpTQjy7vIXkW8C1h0uUstUoGZLqGBLW9CUJp4kw51nRyOFBsT5qcjGHSB0WvbmNfdC9hriGjY-mbZG-EW80iYx1ov4tJsvG7rP4YpJPnl-lRzr1uXMy_IknkcdLdwjKvIpPf3q2sERznZBRqDJQStVzMykH0sI_teefjIvH3hwuseXfQ9lKJXfTqKTnQrAtb1pvsWLQHCCkdg==
 https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQENKODZ9S3RIiSvIpX0dK647JEm22dscY1V7Wc4ajZZY4X4HYDMBaZDnRFeYZIta8JgIVJ1C-Mx4Zb1ATpMdGXDM5hRK3J3D4VurV3T401nJFUf4iwfLuTDd7xNhswBnpHd1rgH78vRgOLpfqYu05kGJYmPWyNlXpU9Hs-dagFP8MDB1zjhiBY77FO_fxz2d7Ab68rqj0EWXtDQT5Cu
 https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFCV_nirnYMWwf3n7y-z96qZI1J5xLkHywO-eyaHULYWvVyASCL8q1A5N22bNqnvrgiwjTA7TC4-_qAYBL0YS6uWFsEtCCot1fo-edvE6J1xLlSVwjhMuNSn31gK7cqVHsDwpLzeIVZyIuj
+https://www.techcrunch.com/2026/09/04/openai-releases-gpt-6-astra-with-critical-cyber-capabilities/
+https://gauchazh.clicrbs.com.br/tecnologia/noticia/2026/09/milhares-de-agentes-de-ia-da-openai-assumiram-controle-de-site-alemao-CLCK3773S000183g4000525.html
+https://www.portalmie.com.br/noticias/mundo/2026/09/05/ia-gratis-para-a-populacao-dois-pais-adotam-modelos-nacionais/
