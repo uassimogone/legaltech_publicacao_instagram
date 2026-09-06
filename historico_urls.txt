@@ -180,3 +180,6 @@ https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFCV_nirnYMW
 https://www.techcrunch.com/2026/09/04/openai-releases-gpt-6-astra-with-critical-cyber-capabilities/
 https://gauchazh.clicrbs.com.br/tecnologia/noticia/2026/09/milhares-de-agentes-de-ia-da-openai-assumiram-controle-de-site-alemao-CLCK3773S000183g4000525.html
 https://www.portalmie.com.br/noticias/mundo/2026/09/05/ia-gratis-para-a-populacao-dois-pais-adotam-modelos-nacionais/
+https://openai.com/index/gpt-6-astra/
+https://www.folha.uol.com.br/tec/2026/09/nvidia-desafia-apple-intel-e-amd-com-pcs-equipados-com-superchip-de-ia-e-precos-altos.shtml
+https://www.solutionsreview.com/blog/ai-news-for-the-week-of-september-4-2026/
