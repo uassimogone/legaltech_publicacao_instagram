@@ -183,3 +183,6 @@ https://www.portalmie.com.br/noticias/mundo/2026/09/05/ia-gratis-para-a-populaca
 https://openai.com/index/gpt-6-astra/
 https://www.folha.uol.com.br/tec/2026/09/nvidia-desafia-apple-intel-e-amd-com-pcs-equipados-com-superchip-de-ia-e-precos-altos.shtml
 https://www.solutionsreview.com/blog/ai-news-for-the-week-of-september-4-2026/
+https://eco.sapo.pt/descodificador/openai-lanca-modelo-de-ia-mais-inteligente-do-mundo-o-que-e-o-gpt-6-astra/
+https://hiperneural.com/2026/09/01/o-salto-agentico-o-fim-dos-chatbots-e-a-ascensao-dos-agentes-autonomos-setembro-2026/
+https://www.innocor.tech/blog/agentes-de-ia-autonomos-2026-governanca-e-auditoria/
