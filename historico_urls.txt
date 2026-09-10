@@ -190,3 +190,6 @@ https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF30BYnnvuE6
 https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQElKRQDyqKRmXYLlfEQe6AHCHg1aY737D_URktqShfYyyDBjdxVg2ow8OTwaaGnrVoUXdO25DFwjfoARGXY1ocprR-95Usk9Si0TbKTASCHnslfY32OQgS_OqzexCBiv0Ba2OBxwtnCzsveXi6-P3XG0akRJ2pkbZWwouT2_EzfzLDVuXJyTkEcpkc8U3rPpgOZNF0MOCVVm8-bIv5_Kxf6h6gEQsXyw128OZkT3LPJ80B9D12jKZKtoQ==
 https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFaWjwzynwrNz1csBCMkOYnPmP971O6UZ8qQtpZYAIEO95legUVM0o1TVjAErOPuBYLMPckcVIBXd1SUIB0xq9UYDUyfLt5jc99g5uJQGH58gDEeVwrNXcz4pABI7zPkj6VcOSnmGsBOfiE6NSlYJzrrHmkgdfinJ752NutA-U=
 https://www.anthropic.com/
+https://www.meta.com/blog/ai/muse-personal-ai-agent/
+https://blog.google/threat-analysis-group/ta-2026-annual-report/
+https://www.harvey.ai/news/harvey-raises-550m-at-15-5b-valuation
