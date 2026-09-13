@@ -194,3 +194,6 @@ https://www.meta.com/blog/ai/muse-personal-ai-agent/
 https://blog.google/threat-analysis-group/ta-2026-annual-report/
 https://www.harvey.ai/news/harvey-raises-550m-at-15-5b-valuation
 https://www.volvocars.com/
+https://www.microsoft.com/copilot/grok-integration
+https://www.openai.com/api/gpt-live-1
+https://www.openai.com/safety-statement-2026
