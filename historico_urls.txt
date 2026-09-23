@@ -207,3 +207,6 @@ https://www.mouts.com.br/agentes-de-ia-autonomos-em-2026-como-empresas-devem-se-
 https://www.example.com/google-gemini-voice-launch
 https://www.example.com/gemini-security-incident
 https://www.example.com/openai-robotics-funding
+https://www.example.com/openai-anthropic-ai-pricing-cut
+https://www.example.com/google-workspace-cc-agent-launch
+https://www.example.com/autonomous-ai-agents-governance-challenge
