@@ -210,3 +210,6 @@ https://www.example.com/openai-robotics-funding
 https://www.example.com/openai-anthropic-ai-pricing-cut
 https://www.example.com/google-workspace-cc-agent-launch
 https://www.example.com/autonomous-ai-agents-governance-challenge
+https://www.openai.com/index/gpt-6-sol-luna-launch/
+https://ai.google.com/gemini/omni-flash-launch/
+https://www.meta.com/blog/connect2026/muse-vr-ray-ban-audio/
